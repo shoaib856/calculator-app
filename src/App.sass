@@ -8,13 +8,18 @@ $box-shadow-dims: 0 5px
     color: hsl(0, 0%, 100%)
     font-size: 1.8rem
     padding-top: 6px
-    padding-left: 0
 
 .calculator
     height: 100vh
     width: 100vw
-    background: $very-dark-desaturated-blue-main-background
+    &.calc-1
+        background: $very-dark-desaturated-blue-main-background
+    &.calc-2
+        background: $Light-gray-main-background
+    &.calc-3
+        background: $Very-dark-violet-main-background
     @include center-content()
+
     .container
         .content
             width: 540px
@@ -25,9 +30,13 @@ $box-shadow-dims: 0 5px
                 position: relative
                 display: flex
                 justify-content: space-between
-                color: $White
                 margin-bottom: 72px
-
+                &.tc-1
+                    color: $White
+                &.tc-2
+                    color: $Very-dark-grayish-yellow
+                &.tc-3
+                    color: $Light-yellow
                 >p
                     position: absolute
                     top: 12px
@@ -56,71 +65,170 @@ $box-shadow-dims: 0 5px
                     .theme-change-toggle
                         width: 70px
                         height: 26px
-                        background-color: $very-dark-desaturated-blue-toggle-keypad-background
-                        border-radius: $border-radius
+                        border-radius: $border-radius + 3px
                         display: flex
                         align-items: center
                         padding: 0 4px
-
+                        &:has( .ball-1 )
+                            justify-content: flex-start
+                            background-color: $very-dark-desaturated-blue-toggle-keypad-background
+                        &:has( .ball-2 )
+                            justify-content: center
+                            background-color: $Grayish-red-toggle-keypad-background
+                        &:has( .ball-3 )
+                            justify-content: flex-end
+                            background-color: $Very-dark-violet-toggle-keypad-screen-background
                         .ball
                             display: block
-                            @include circle(16px)
-                            background-color: $Red-key-background-toggle
                             cursor: pointer
-                            &:hover
-                                background-color: #f96c5b
+                            @include circle(16px)
+                            &.ball-1
+                                background-color: $Red-key-background-toggle
+                                &:hover
+                                    background-color: #f96c5b
+                            &.ball-2
+                                background-color: $Orange-key-background-toggle
+                                &:hover
+                                    background-color: #ff8a38
+                            &.ball-3
+                                background-color: $Pure-cyan-key-background-toggle
+                                &:hover
+                                    background-color: #94fff9
 
             .screen
                 width: 100%
                 height: 128px
-                background-color: $very-dark-desaturated-blue-screen-background
                 margin-bottom: 24px
                 border-radius: $border-radius
-                color: $White
                 display: flex
                 align-items: end
                 justify-content: flex-end
                 padding: 0 31px 37px
                 font-size: 3.4rem
 
+                &.sc-1
+                    background-color: $very-dark-desaturated-blue-screen-background
+                    color: $White
+                &.sc-2
+                    background-color: $Very-light-gray-screen-background
+                    color: $Very-dark-grayish-yellow
+                &.sc-3
+                    background-color: $Very-dark-violet-toggle-keypad-screen-background
+                    color: $Light-yellow
+
             .btns-container
                 width: 100%
                 height: 480px
-                background-color: $very-dark-desaturated-blue-toggle-keypad-background
                 border-radius: $border-radius
                 padding: 32px 32px 31px 30px
                 display: grid
                 grid-template-columns: repeat(4, 101px)
                 grid-template-rows: repeat(5, 60px)
                 gap: 28px 25px
+                &.container-1
+                    background-color: $very-dark-desaturated-blue-toggle-keypad-background
+                &.container-2
+                    background-color: $Grayish-red-toggle-keypad-background
+                &.container-3
+                    background-color: $Very-dark-violet-toggle-keypad-screen-background
+
                 button
                     cursor: pointer
                     border-radius: $border-radius
                     outline: none
                     border: none
-                    font-size: 2rem
-                    color: $Very-dark-grayish-blue
-                    background-color: $Light-grayish-orange-key-background
+                    font-size: 2.5rem
                     padding:
                         top: 10px
-                    box-shadow: $box-shadow-dims $Grayish-orange-key-shadow
                     @include center-content()
-                    &:hover
-                        background-color: #fff
+
+                    &.btn-1
+                        color: $Very-dark-grayish-blue
+                        background-color: $Light-grayish-orange-key-background
+                        box-shadow: $box-shadow-dims $Grayish-orange-key-shadow
+                        &:hover
+                            background-color: #fff
+                    &.btn-2
+                        color: $Very-dark-grayish-yellow
+                        background-color: $Light-grayish-yellow-key-background
+                        box-shadow: $box-shadow-dims $Dark-grayish-orange-key-shadow
+                        &:hover
+                            background-color: #fff
+                    &.btn-3
+                        color: $Light-yellow
+                        background-color: $Very-dark-violet-key-background
+                        box-shadow: $box-shadow-dims $Dark-magenta-key-shadow
+                        &:hover
+                            background-color: #6b34ac
 
                     &.del,&.reset
                         @extend %del-reset-evaluate-btns
-                        background-color: $Desaturated-dark-blue-key-background
-                        box-shadow: $box-shadow-dims $Desaturated-dark-blue-key-shadow
-                        &:hover
-                            background-color: #a2b3e1
+                        &.del-1,&.reset-1
+                            background-color: $Desaturated-dark-blue-key-background
+                            box-shadow: $box-shadow-dims $Desaturated-dark-blue-key-shadow
+                            &:hover
+                                background-color: #a2b3e1
+                        &.del-2,&.reset-2
+                            background-color: $Dark-moderate-cyan-key-background
+                            box-shadow: $box-shadow-dims $Very-dark-cyan-key-shadow
+                            &:hover
+                                background-color: #62b5bd
+                        &.del-3,&.reset-3
+                            background-color: $Dark-violet-key-background
+                            box-shadow: $box-shadow-dims $Vivid-magenta-key-shadow
+                            &:hover
+                                background-color: #8631b0
 
                     &.evaluate
                         @extend %del-reset-evaluate-btns
-                        background-color: $Red-key-background-toggle
-                        box-shadow: $box-shadow-dims $Dark-red-key-shadow
-                        &:hover
-                            background-color: #f96c5b
+                        &.eval-1
+                            background-color: $Red-key-background-toggle
+                            box-shadow: $box-shadow-dims $Dark-red-key-shadow
+                            &:hover
+                                background-color: #f96c5b
+
+                        &.eval-2
+                            background-color: $Orange-key-background-toggle
+                            box-shadow: $box-shadow-dims $Dark-orange-key-shadow
+                            &:hover
+                                background-color: #ff8a38
+
+                        &.eval-3
+                            background-color: $Pure-cyan-key-background-toggle
+                            box-shadow: $box-shadow-dims $Soft-cyan-key-shadow
+                            color: $Very-dark-blue
+                            &:hover
+                                background-color: #94fff9
 
                 .span-2
                     grid-column: span 2
+
+@media (max-width:425px)
+    .calculator
+        align-items: flex-start
+        padding-top: 27px
+        .container
+            .content
+                width: 100%
+                padding: 0 24px
+
+                .theme-change
+                    margin-bottom: 77px
+                    >div
+                        top: 21px
+
+                .screen
+                    height: 88px
+                    padding: 0 24px 27px
+                    font-size: 2.4rem
+
+                .btn-container
+                    height: 420px
+                    padding: 24px
+                    grid-template-columns: repeat(4, 60px)
+                    gap: 17px 13px
+                    button
+                        font-size: 2rem
+                        &.del,&.reset,&.evaluate
+                            font-size: 1.2rem //new
+                            padding-top: 3px //new

@@ -1,4 +1,4 @@
-function DigitBtn({ digit, dispatch }) {
+function DigitBtn({ digit, dispatch, theme }) {
   const handleInput = () => {
     dispatch({
       type: "digit",
@@ -6,7 +6,7 @@ function DigitBtn({ digit, dispatch }) {
     });
   };
   return (
-    <button type="button" className="btn" onClick={handleInput}>
+    <button type="button" className={`btn-${theme}`} onClick={handleInput}>
       {digit}
     </button>
   );

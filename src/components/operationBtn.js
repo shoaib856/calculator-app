@@ -1,4 +1,4 @@
-function OperationBtn({ operation, dispatch }) {
+function OperationBtn({ operation, dispatch, theme }) {
   const handleInput = () => {
     dispatch({
       type: "operation",
@@ -6,7 +6,7 @@ function OperationBtn({ operation, dispatch }) {
     });
   };
   return (
-    <button type="button" className="btn" onClick={handleInput}>
+    <button type="button" className={`btn btn-${theme}`} onClick={handleInput}>
       {operation}
     </button>
   );

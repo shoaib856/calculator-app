@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import "./App.sass";
 import DigitBtn from "./components/digitBtn";
 import OperationBtn from "./components/operationBtn";
@@ -83,11 +83,15 @@ function App() {
     previous: null,
     overwrite: true,
   });
+  const [theme, setTheme] = useState(
+    JSON.parse(localStorage.getItem("theme")) ?? 1
+  );
+  useEffect(() => localStorage.setItem("theme", JSON.stringify(theme)));
   return (
-    <div className="calculator">
+    <div className={`calculator calc-${theme}`}>
       <div className="container">
         <div className="content">
-          <div className="theme-change">
+          <div className={`theme-change tc-${theme}`}>
             <p>calc</p>
             <div>
               <p>THEME</p>
@@ -97,39 +101,44 @@ function App() {
                 <span>3</span>
               </div>
               <div className="theme-change-toggle">
-                <span className="ball"></span>
+                <span
+                  className={`ball ball-${theme}`}
+                  onClick={() => setTheme(theme >= 3 ? 1 : theme + 1)}
+                ></span>
               </div>
             </div>
           </div>
 
-          <div className="screen">{state.current ?? state.previous ?? ""}</div>
+          <div className={`screen sc-${theme}`}>
+            {state.current ?? state.previous ?? ""}
+          </div>
 
-          <div className="btns-container">
-            <DigitBtn digit={"7"} dispatch={dispatch} />
-            <DigitBtn digit={"8"} dispatch={dispatch} />
-            <DigitBtn digit={"9"} dispatch={dispatch} />
+          <div className={`btns-container container-${theme}`}>
+            <DigitBtn digit={"7"} dispatch={dispatch} theme={theme} />
+            <DigitBtn digit={"8"} dispatch={dispatch} theme={theme} />
+            <DigitBtn digit={"9"} dispatch={dispatch} theme={theme} />
             <button
               type="button"
-              className="del"
+              className={`del del-${theme}`}
               onClick={() => dispatch({ type: "del" })}
             >
               DEL
             </button>
-            <DigitBtn digit={"4"} dispatch={dispatch} />
-            <DigitBtn digit={"5"} dispatch={dispatch} />
-            <DigitBtn digit={"6"} dispatch={dispatch} />
-            <OperationBtn operation={"+"} dispatch={dispatch} />
-            <DigitBtn digit={"1"} dispatch={dispatch} />
-            <DigitBtn digit={"2"} dispatch={dispatch} />
-            <DigitBtn digit={"3"} dispatch={dispatch} />
-            <OperationBtn operation={"-"} dispatch={dispatch} />
-            <DigitBtn digit={"."} dispatch={dispatch} />
-            <DigitBtn digit={"0"} dispatch={dispatch} />
-            <OperationBtn operation={"/"} dispatch={dispatch} />
-            <OperationBtn operation={"x"} dispatch={dispatch} />
+            <DigitBtn digit={"4"} dispatch={dispatch} theme={theme} />
+            <DigitBtn digit={"5"} dispatch={dispatch} theme={theme} />
+            <DigitBtn digit={"6"} dispatch={dispatch} theme={theme} />
+            <OperationBtn operation={"+"} dispatch={dispatch} theme={theme} />
+            <DigitBtn digit={"1"} dispatch={dispatch} theme={theme} />
+            <DigitBtn digit={"2"} dispatch={dispatch} theme={theme} />
+            <DigitBtn digit={"3"} dispatch={dispatch} theme={theme} />
+            <OperationBtn operation={"-"} dispatch={dispatch} theme={theme} />
+            <DigitBtn digit={"."} dispatch={dispatch} theme={theme} />
+            <DigitBtn digit={"0"} dispatch={dispatch} theme={theme} />
+            <OperationBtn operation={"/"} dispatch={dispatch} theme={theme} />
+            <OperationBtn operation={"x"} dispatch={dispatch} theme={theme} />
             <button
               type="button"
-              className="span-2 reset"
+              className={`span-2 reset reset-${theme}`}
               onClick={() => {
                 dispatch({ type: "reset" });
               }}
@@ -138,7 +147,7 @@ function App() {
             </button>
             <button
               type="button"
-              className="span-2 evaluate"
+              className={`span-2 evaluate eval-${theme}`}
               onClick={() => dispatch({ type: "eval" })}
             >
               =
