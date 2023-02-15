@@ -101,7 +101,7 @@ $box-shadow-dims: 0 5px
                 margin-bottom: 24px
                 border-radius: $border-radius
                 display: flex
-                align-items: end
+                align-items: flex-end
                 justify-content: flex-end
                 padding: 0 31px 37px
                 font-size: 3.4rem
@@ -203,7 +203,7 @@ $box-shadow-dims: 0 5px
                 .span-2
                     grid-column: span 2
 
-@media (max-width:425px)
+@media (max-width: 540px)
     .calculator
         align-items: flex-start
         padding-top: 27px
@@ -222,7 +222,7 @@ $box-shadow-dims: 0 5px
                     padding: 0 24px 27px
                     font-size: 2.4rem
 
-                .btn-container
+                .btns-container
                     height: 420px
                     padding: 24px
                     grid-template-columns: repeat(4, 60px)
@@ -230,5 +230,12 @@ $box-shadow-dims: 0 5px
                     button
                         font-size: 2rem
                         &.del,&.reset,&.evaluate
-                            font-size: 1.2rem //new
-                            padding-top: 3px //new
+                            font-size: 1.2rem
+                            padding-top: 3px
+@media (max-width:375px)
+    .calculator
+        .container
+            .content
+                padding: 0
+                .btns-container
+                    padding: 15px

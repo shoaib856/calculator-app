@@ -37,6 +37,7 @@ function reducer(state, { type, payload }) {
       return {};
     case "del":
       if (state.current == null) return state;
+      if (!state.overwrite) return {};
       if (state.current.length === 1) return {};
       return {
         ...state,
@@ -48,7 +49,7 @@ function reducer(state, { type, payload }) {
         state.current == null ||
         state.previous == null
       )
-        return state;
+        return { ...state, overwrite: false };
       return {
         ...state,
         previous: null,
